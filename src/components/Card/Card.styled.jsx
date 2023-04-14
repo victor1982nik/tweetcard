@@ -2,6 +2,7 @@ import styled from "styled-components";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 
 export const CardWrapper = styled.div`
+  padding-top: 28px;
   text-align: center;
   position: relative;
   width: 380px;
@@ -27,7 +28,7 @@ export const Logo = styled(BackgroundImage)`
 
 export const MainPicture = styled(BackgroundImage)`
   display: block;
-  margin: 28px 36px 18px;
+  margin: 0 36px 18px;
 
   width: 308px;
   height: 168px;

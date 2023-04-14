@@ -1,10 +1,10 @@
-import Card from "../components/Card/Card";
+import TweetsList from "../components/TweetsList/TweetsList";
 
 const TweetsPage = () => {
   return (
-    <div>
-      <Card />
-    </div>
+    <>
+      <TweetsList />
+    </>
   );
 };
 export default TweetsPage;

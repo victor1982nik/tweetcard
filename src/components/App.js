@@ -3,7 +3,7 @@ import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import TweetsPage from "../pages/TweetsPage";
-import HomePage from "../pages/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import SharedLayout from "./SharedLayout/SharedLayout";
 
 export const App = () => {
