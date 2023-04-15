@@ -16,7 +16,7 @@ import imgLogo from "../../images/Logo.png";
 import imgMain from "../../images/picture2.png";
 import imgUser from "../../images/Hansel.png";
 
-const Card = () => {
+const Card = ({ tweets, followers, avatar = imgUser }) => {
   return (
     <CardWrapper>
       <Logo
@@ -33,15 +33,17 @@ const Card = () => {
       <OuterUserPicFrame>
         <InnerUserPicFrame>
           <UserPic
-            srcSetOldTypes={imgUser}
-            placeholderImg={imgUser}
+            srcSetOldTypes={avatar}
+            placeholderImg={avatar}
             typeOldTypes={"image/png"}
           />
         </InnerUserPicFrame>
       </OuterUserPicFrame>
       <Text>
-        <TweetText>TWEETS</TweetText>
-        <FollowersText>FOLLOWERS</FollowersText>
+        <TweetText>{tweets} TWEETS</TweetText>
+        <FollowersText>
+          {followers.toLocaleString("en-US")} FOLLOWERS
+        </FollowersText>
       </Text>
       <Button>
         <ButtonName>Follow</ButtonName>

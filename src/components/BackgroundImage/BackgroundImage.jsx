@@ -8,10 +8,10 @@ const BackgroundImage = ({
   // children,
 }) => {
   return (
-    <picture className={className}>
+    <picture>
       {/* <source srcSet={srcSetWebp} type={typeWebp} /> */}
       <source srcSet={srcSetOldTypes} type={typeOldTypes} />
-      <img src={placeholderImg} alt="" />
+      <img className={className} src={placeholderImg} alt="" />
       {/* {children} */}
     </picture>
   );

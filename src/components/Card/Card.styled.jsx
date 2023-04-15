@@ -22,7 +22,7 @@ export const Logo = styled(BackgroundImage)`
   position: absolute;
   left: 20px;
   top: 20px;
-  width: 100%;
+
   text-align: left;
 `;
 
@@ -57,6 +57,7 @@ export const OuterUserPicFrame = styled.div`
 `;
 
 export const InnerUserPicFrame = styled.div`
+  overflow: hidden;
   position: absolute;
   width: 62px;
   height: 62px;
@@ -67,10 +68,11 @@ export const InnerUserPicFrame = styled.div`
 `;
 
 export const UserPic = styled(BackgroundImage)`
+  object-fit: contain;
   width: 62px;
-  height: 62px;
-  left: 0;
-  top: 0;
+  //height: 62px;
+  //left: 0;
+  //top: 0;
 `;
 
 export const Text = styled.div`
