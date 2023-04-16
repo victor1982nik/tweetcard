@@ -7,6 +7,11 @@ export async function fetchUsers(page = 1, limit = 8) {
   return result.data;
 }
 
+export async function fetchAllUsers() {
+  const result = await axios.get(`/users`);
+  return result.data;
+}
+
 export async function patchUser(obj) {
   const result = await axios.patch("/users", obj);
   return result.data;

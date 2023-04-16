@@ -94,12 +94,12 @@ export const FollowersText = styled.p`
 `;
 
 export const Button = styled.button`
-  padding: 14px 56px;
+  padding: 14px 40px;
   width: 196px;
   //margin-bottom: 36px;
 
   border: 0;
-  background-color: #ebd8ff;
+  background-color: ${(props) => (!props.isFollower ? "#ebd8ff" : "#5CD3A8")};
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   cursor: pointer;
@@ -107,6 +107,7 @@ export const Button = styled.button`
 
 export const ButtonName = styled.span`
   color: #373737;
+
   font-family: inherit;
   font-style: normal;
   font-weight: 600;

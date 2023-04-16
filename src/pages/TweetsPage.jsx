@@ -1,9 +1,9 @@
-import TweetsList from "../components/TweetsList/TweetsList";
+import Tweets from "../components/Tweets/Tweets";
 
 const TweetsPage = () => {
   return (
     <>
-      <TweetsList />
+      <Tweets />
     </>
   );
 };
