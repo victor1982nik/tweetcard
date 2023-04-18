@@ -30,7 +30,7 @@ const Card = ({ user }) => {
     setIsSubscribed((s) => !s);
   };
 
-  console.log(isSubscribed);
+  //console.log(isSubscribed);
   return (
     <CardWrapper>
       <Logo
