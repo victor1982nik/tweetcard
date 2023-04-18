@@ -8,9 +8,6 @@ import SharedLayout from "./SharedLayout/SharedLayout";
 
 export const App = () => {
   return (
-    // <div className="Container">
-    //   <Card />
-    // </div>
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />

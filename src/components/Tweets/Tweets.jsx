@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchUsers } from "../../api/usersApi";
 import { Loader } from "../Loader/Loader";
 import Filter from "../Filter/Filter";
@@ -16,7 +16,7 @@ const Tweets = () => {
   const [loadedTweets, setLoadedTweets] = useState(null);
   const [filterSubscription, setFilterSubscription] = useState("disabled");
 
-  const ref = useRef(true);
+  //const ref = useRef(true);
 
   useEffect(() => {
     const getAllUsers = async () => {
@@ -36,10 +36,10 @@ const Tweets = () => {
 
   useEffect(() => {
     //debugger;
-    if (ref.current) {
-      ref.current = false;
-      return;
-    }
+    // if (ref.current) {
+    //   ref.current = false;
+    //   return;
+    // }
     const getUsers = async () => {
       try {
         setIsLoading(true);
