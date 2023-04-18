@@ -16,17 +16,21 @@ import imgLogo from "../../images/Logo.png";
 import imgMain from "../../images/picture2.png";
 import imgUser from "../../images/Hansel.png";
 import { useState } from "react";
+import { updateUser } from "../../api/usersApi";
 
 const Card = ({ user }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
-  //console.log("isSubscribed", isSubscribed);
   const { tweets, followers, avatar = imgUser } = user;
 
-  // const handleClick = (id) => {
-  //   setIsSubscribed((s) => !s);
-  //   console.log(id);
-  // };
+  const handleClick = async (action) => {
+    user.followers =
+      action === "increment" ? (user.followers += 1) : (user.followers -= 1);
+    user.isSubscribed = !user.isSubscribed;
+    await updateUser(user);
+    setIsSubscribed((s) => !s);
+  };
 
+  console.log(isSubscribed);
   return (
     <CardWrapper>
       <Logo
@@ -55,13 +59,16 @@ const Card = ({ user }) => {
           {followers.toLocaleString("en-US")} FOLLOWERS
         </FollowersText>
       </Text>
-      <Button
-        isFollower={isSubscribed}
-        onClick={() => setIsSubscribed((s) => !s)}
-      >
-        {/* <ButtonName onClick={() => setIsSubscribed((s) => !s)}> */}
-        <ButtonName>{!isSubscribed ? "Follow" : "Following"}</ButtonName>
-      </Button>
+      {!user.isSubscribed && (
+        <Button onClick={() => handleClick("increment")}>
+          <ButtonName> Follow </ButtonName>
+        </Button>
+      )}
+      {user.isSubscribed && (
+        <Button onClick={() => handleClick("decrement")}>
+          <ButtonName>Following</ButtonName>
+        </Button>
+      )}
     </CardWrapper>
   );
 };

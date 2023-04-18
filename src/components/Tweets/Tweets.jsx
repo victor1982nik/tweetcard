@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { fetchUsers, fetchAllUsers } from "../../api/usersApi";
+import { fetchUsers } from "../../api/usersApi";
 import { Loader } from "../Loader/Loader";
-import Filter from "../../Filter/Filter";
+import Filter from "../Filter/Filter";
 import TweetsList from "../TweetsList/TweetsList";
 import { Button } from "../Card/Card.styled";
 import { Box } from "./Tweets.styled";
+import BackLink from "../BackLink/BackLink";
 
 const Tweets = () => {
   const [users, setUsers] = useState([]);
@@ -13,6 +14,7 @@ const Tweets = () => {
   const [tweetsPerPage, setTweetsPerPage] = useState(8);
   const [totaltweets, setTotalTweets] = useState(null);
   const [loadedTweets, setLoadedTweets] = useState(null);
+  const [filterSubscription, setFilterSubscription] = useState("disabled");
 
   const ref = useRef(true);
 
@@ -20,7 +22,7 @@ const Tweets = () => {
     const getAllUsers = async () => {
       try {
         setIsLoading(true);
-        const result = await fetchAllUsers();
+        const result = await fetchUsers();
         setTotalTweets(result.length);
       } catch (error) {
         console.log(error.message);
@@ -41,7 +43,11 @@ const Tweets = () => {
     const getUsers = async () => {
       try {
         setIsLoading(true);
-        const result = await fetchUsers(page, tweetsPerPage);
+        const result = await fetchUsers(
+          page,
+          tweetsPerPage,
+          filterSubscription
+        );
         setUsers((s) => [...s, ...result]);
         setLoadedTweets((s) => s + Number(tweetsPerPage));
       } catch (error) {
@@ -52,7 +58,7 @@ const Tweets = () => {
     };
 
     getUsers();
-  }, [page, tweetsPerPage]);
+  }, [page, tweetsPerPage, filterSubscription]);
 
   const handleFilterChange = (e) => {
     setUsers([]);
@@ -60,16 +66,20 @@ const Tweets = () => {
     setPage(1);
     setLoadedTweets(null);
   };
-  // const handleSubscribe = (id) => {
-  //   console.log(id);
-  // };
-  //console.log(users);
-  //console.log(page);
-  //console.log("totaltweets", totaltweets);
-  //console.log("loadedTweets", loadedTweets);
+  const handleFilterSubscriptionChanges = (e) => {
+    setUsers([]);
+    setFilterSubscription(e.target.value);
+    setPage(1);
+    setLoadedTweets(null);
+  };
+
   return (
     <>
-      <Filter onChangeFilter={handleFilterChange} />
+      <BackLink to={"/"}>На головну</BackLink>
+      <Filter
+        onChangeFilter={handleFilterChange}
+        onChangeFilterSubscription={handleFilterSubscriptionChanges}
+      />
       {isLoading && <Loader />}
       {users.length > 0 && <TweetsList users={users} />}
       {users.length > 0 && totaltweets > loadedTweets && (

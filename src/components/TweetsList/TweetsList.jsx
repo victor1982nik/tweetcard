@@ -6,7 +6,7 @@ const TweetsList = ({ users }) => {
     <List>
       {users.map((user) => (
         <li key={user.id}>
-          <Card user={user}  />
+          <Card user={user} />
         </li>
       ))}
     </List>
